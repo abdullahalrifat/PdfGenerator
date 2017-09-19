@@ -41,3 +41,8 @@ class view(generic.ListView):
     def get_queryset(self):
         return pdf.objects.all()
 
+class admin(generic.ListView):
+    template_name = 'PDFGenerate/admin.html'
+    def get_queryset(self):
+        return pdf.objects.all()
+

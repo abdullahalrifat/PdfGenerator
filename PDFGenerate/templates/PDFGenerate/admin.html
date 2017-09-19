@@ -1,0 +1,14 @@
+{% if object_list %}
+    <ul>
+        {% for pdf in object_list%}
+            <li>
+                <h3>{{ pdf.name }}</h3>
+                <h3>{{ pdf.org }}</h3>
+                <h3>{{ pdf.talk }}</h3>
+                <img src="{{ pdf.person_image}}">
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>Nothing Found</h3>
+{% endif %}

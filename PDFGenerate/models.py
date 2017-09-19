@@ -8,5 +8,8 @@ class pdf(models.Model):
 
     def get_absolute_url(self):
         return reverse('pdf:view')
+
     def __str__(self):
         return self.name+' '+self.org+' '+ self.talk+' '+u'<img src="%s" />' % self.person_image.url
+
+
