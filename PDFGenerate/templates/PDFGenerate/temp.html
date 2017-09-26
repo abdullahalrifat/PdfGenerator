@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+    <head>
+        <title>My Title</title>
+        <style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 1cm;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+        <li>
+                <h3>{{ data.name }}</h3>
+                <h3>{{ data.org }}</h3>
+                <h3>{{ data.talk }}</h3>
+                <img src="{{ img }}" class="img-responsive" style="width:304px;height:228px;">
+            </li>
+        </div>
+
+    </body>
+</html>
