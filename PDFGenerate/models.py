@@ -4,7 +4,7 @@ class pdf(models.Model):
     name=models.CharField(max_length=250)
     org=models.CharField(max_length=250)
     talk=models.CharField(max_length=1000)
-    person_image=models.FileField()
+    person_image=models.ImageField()
 
     def get_absolute_url(self):
         return reverse('pdf:view')
