@@ -1,1 +1,1 @@
-web: gunicorn PDFGenerate.wsgi:application --log-file -
+web: gunicorn {{ PDFGenerate }}.wsgi
