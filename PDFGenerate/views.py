@@ -63,6 +63,30 @@ class AddCommentView(CreateView):
         })
 
 
+def forms(request):
+    template_name = 'PDFGenerate/base.html'
+    if request.method == 'POST':
+        form = AddCommentForm(request.POST, request.FILES)
+        id_form=AddIdForm(request.POST,request.FILES)
+        print (id_form)
+        if form.is_valid():
+            return render(request, 'PDFGenerate/pdf_form.html', {
+                "field": pdf
+            })
+        elif id_form.is_valid():
+            post = id_form.save(commit=False)
+            post.user = request.user
+            post.save()
+        else:
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = AddCommentForm()
+    return render(request, template_name, {
+        "comment_form": form
+    })
+
+'''
+
 class form(CreateView):
     model = pdf
     fields =['name','org','talk','person_image']
@@ -74,16 +98,16 @@ class form(CreateView):
     def post(self, request):
         comment_form = self.comment_form_class(request.POST, prefix='comment', auto_id=False)
         id_form = self.id_form_class(request.POST, prefix='comment', auto_id=True)
+        pf = AddIdForm(request.POST, request.FILES)
+        print(pf)
 
-        if id_form.is_valid():
-            pf = pdf(request.POST)
+        if pf.is_valid():
+            pf.save()
+            return HttpResponseRedirect('/thanks/')
             #pf.name=id_form.cleaned_data['name']
             #pf.org= id_form.cleaned_data['org']
             #pf.talk = id_form.cleaned_data['talk']
             #pf.person_image = id_form.cleaned_data[' person_image']
-            pf.save()
-            return HttpResponseRedirect('/thanks/')
-
         elif comment_form.is_valid():
             return render(request, 'PDFGenerate/pdf_form.html', {
                 "field": pdf
@@ -95,7 +119,7 @@ class form(CreateView):
 
 
 
-
+'''
 class view(generic.ListView):
 
     template_name = 'PDFGenerate/done.html'

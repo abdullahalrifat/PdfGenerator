@@ -20,8 +20,8 @@
             {% csrf_token %}
             <div>
                 <label>
-                    {{ comment_form.message }}
-                    <input id="email" >
+
+                    <input type="text" name="message" id="id_message" required maxlength="1000" />
                     <button type="submit">Ok</button>
                 </label>
             </div>
