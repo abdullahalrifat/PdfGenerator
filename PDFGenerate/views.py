@@ -68,8 +68,9 @@ def forms(request):
     if request.method == 'POST':
         form = AddCommentForm(request.POST, request.FILES)
         id_form=AddIdForm(request.POST,request.FILES)
-        print (id_form)
+        #print (id_form)
         if form.is_valid():
+            print(form.cleaned_data['message'])
             return render(request, 'PDFGenerate/pdf_form.html', {
                 "field": pdf
             })
