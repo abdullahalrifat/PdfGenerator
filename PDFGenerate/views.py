@@ -1,4 +1,4 @@
-from django.http import  HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.http import  Http404
 from django.template import loader
 from django.shortcuts import render
@@ -10,6 +10,12 @@ from .models import pdf
 from django.template.loader import get_template
 from django.template import Context
 from django.conf import settings
+
+
+from .models import Comment
+from .forms import AddCommentForm
+
+
 import pdfkit
 
 '''
@@ -36,9 +42,31 @@ def pdfgen(request):
 
     return response
 '''
+
+
 class form(CreateView):
     model = pdf
     fields =['name','org','talk','person_image']
+
+    comment_form_class = AddCommentForm
+    template_name = 'PDFGenerate/base.html'
+    def post(self, request):
+        comment_form = self.comment_form_class(request.POST, prefix='comment', auto_id=False)
+
+        if comment_form.is_valid():
+            comment = Comment()
+            comment.message = comment_form.cleaned_data['message']
+
+            comment.save()
+
+            return HttpResponseRedirect('/thanks/')
+
+        return get_template(self.template_name).render({
+            "comment_form": comment_form
+        })
+
+
+
 
 class view(generic.ListView):
 
@@ -46,12 +74,12 @@ class view(generic.ListView):
     def get_queryset(self):
         return pdf.objects.all()
 
+
+
 class admin(generic.ListView):
     template_name = 'PDFGenerate/admin.html'
     def get_queryset(self):
         return pdf.objects.all()
-
-
 
 
 class gen(generic.ListView):
@@ -83,4 +111,6 @@ class gen(generic.ListView):
     def get_queryset(self):
         self.myview()
         return pdf.objects.all()
+
+
 
