@@ -19,4 +19,7 @@ class pdf(models.Model):
 class Comment(models.Model):
 
     message = models.CharField(max_length=1000)
+    def __str__(self):
+        return self.message
+
 

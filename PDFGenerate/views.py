@@ -13,8 +13,10 @@ from django.conf import settings
 
 
 from .models import Comment
-from .forms import AddCommentForm
+from .models import pdf
 
+from .forms import AddCommentForm
+from .forms import AddIdForm
 
 import pdfkit
 
@@ -44,12 +46,10 @@ def pdfgen(request):
 '''
 
 
-class form(CreateView):
-    model = pdf
-    fields =['name','org','talk','person_image']
-
+class AddCommentView(CreateView):
     comment_form_class = AddCommentForm
     template_name = 'PDFGenerate/base.html'
+
     def post(self, request):
         comment_form = self.comment_form_class(request.POST, prefix='comment', auto_id=False)
 
@@ -57,11 +57,39 @@ class form(CreateView):
             comment = Comment()
             comment.message = comment_form.cleaned_data['message']
 
-            comment.save()
+            return HttpResponseRedirect('/thanks/')
+        return render(request, self.template_name, {
+            "comment_form": comment_form
+        })
 
+
+class form(CreateView):
+    model = pdf
+    fields =['name','org','talk','person_image']
+
+    comment_form_class = AddCommentForm
+    id_form_class = AddIdForm
+    template_name = 'PDFGenerate/base.html'
+
+    def post(self, request):
+        comment_form = self.comment_form_class(request.POST, prefix='comment', auto_id=False)
+        id_form = self.id_form_class(request.POST, prefix='comment', auto_id=True)
+
+        if id_form.is_valid():
+            pf = pdf(request.POST)
+            #pf.name=id_form.cleaned_data['name']
+            #pf.org= id_form.cleaned_data['org']
+            #pf.talk = id_form.cleaned_data['talk']
+            #pf.person_image = id_form.cleaned_data[' person_image']
+            pf.save()
             return HttpResponseRedirect('/thanks/')
 
-        return get_template(self.template_name).render({
+        elif comment_form.is_valid():
+            return render(request, 'PDFGenerate/pdf_form.html', {
+                "field": pdf
+            })
+
+        return render(request, self.template_name, {
             "comment_form": comment_form
         })
 
