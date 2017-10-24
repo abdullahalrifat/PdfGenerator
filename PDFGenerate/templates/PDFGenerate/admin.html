@@ -1,6 +1,17 @@
 {% if object_list %}
     <ul>
-     <a href="{% url 'pdf:gen' %}">Clic here</a>
+     <a href="{% url 'pdf:gen' %}">Geberate PDF</a>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                     
+                    <input type="file" name="ex" id="id_ex" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+          </form>
         {% for pdf in object_list%}
             <li>
                 <h3>{{ pdf.id }}</h3>

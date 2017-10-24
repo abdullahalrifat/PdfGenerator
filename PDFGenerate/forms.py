@@ -3,6 +3,8 @@ from django.forms import ModelForm
 
 from .models import Comment
 from .models import pdf
+from .models import verify
+from .models import excel
 
 
 class AddCommentForm(ModelForm):
@@ -19,3 +21,17 @@ class AddIdForm(ModelForm):
         model = pdf
         fields = ['name','org','talk','person_image']
 
+
+
+class AddPasswordForm(ModelForm):
+
+    class Meta:
+        model = verify
+        fields = ['password']
+
+
+class AddExcelForm(ModelForm):
+
+    class Meta:
+        model = excel
+        fields = ['ex']
