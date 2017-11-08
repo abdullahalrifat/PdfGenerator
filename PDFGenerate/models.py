@@ -32,7 +32,7 @@ class verify(models.Model):
 
 class excel(models.Model):
     ex=models.FileField()
-
+    type=models.CharField(max_length=250)
     def __str__(self):
         return self.ex.url
 

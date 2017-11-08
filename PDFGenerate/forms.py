@@ -34,4 +34,4 @@ class AddExcelForm(ModelForm):
 
     class Meta:
         model = excel
-        fields = ['ex']
+        fields = ['ex','type']

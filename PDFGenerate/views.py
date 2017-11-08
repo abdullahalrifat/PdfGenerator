@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from Test.settings import BASE_DIR
 from Test.settings import STATIC_DIRS
-
+from Test.settings import PDF_DIRS
 from .models import pdf
 from django.template.loader import get_template
 from django.template import Context
@@ -26,11 +26,9 @@ from .forms import AddIdForm
 from .forms import AddPasswordForm
 from .forms import AddExcelForm
 
-import django_excel as excel
-import pyexcel.ext.xls
-import pyexcel.ext.xlsx
-from openpyxl import load_workbook, Workbook
-from io import BytesIO
+
+from openpyxl import load_workbook
+
 
 import pdfkit
 
@@ -137,8 +135,6 @@ class form(CreateView):
             "comment_form": comment_form
         })
 
-
-
 '''
 class view(generic.ListView):
 
@@ -183,10 +179,14 @@ def ver(request):
             else:
                 return HttpResponseRedirect('/form/wrong')
         elif exx.is_valid():
+            type_list = request.POST.getlist('type', None)
 
+            type=type_list[0]
+            data.objects.all().delete()
             filehandle = request.FILES['ex']
             wb = load_workbook(filehandle)
             sheet = wb.get_sheet_by_name('Sheet1')
+            print(type_list)
             print(sheet.title)
             for row in sheet.iter_rows('B{}:J{}'.format(sheet.min_row+1, sheet.max_row)):
                 d=[]
@@ -197,6 +197,7 @@ def ver(request):
                 datas = data(name=d[0],designation=d[1],company=d[2],contactno=d[3],email=d[4],address=d[5],interest1=d[6],interest2=d[7],interest3=d[8])
                 datas.save()
                 #print(d["name"])
+            generatePdf(type)
 
             return render(request, 'PDFGenerate/done.html', {
                 "comment_form": form
@@ -211,6 +212,34 @@ def ver(request):
 
 
 
+def generatePdf(typ):
+    def render_to_pdf(template_src, context_dict, id, location):
+        html = get_template(template_src).render({
+            "data": context_dict,
+            "dir": STATIC_DIRS
+        })
+        dirs=''.join(PDF_DIRS)
+
+        pdfkit.from_string(html, dirs+location+'out' + str(id) + '.pdf')
+
+
+    if(typ=="Atendee"):
+        location="/Atendee/"
+        for pdfs in data.objects.all():
+            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
+    elif(typ=="Crew"):
+        location = "/Crew/"
+        for pdfs in data.objects.all():
+            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
+    elif(typ=="Organizer"):
+        location = "/Organizer/"
+
+        for pdfs in data.objects.all():
+            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
+    elif (typ == "Speaker"):
+        location = "/Speaker/"
+        for pdfs in data.objects.all():
+            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
 
 
 class gen(generic.ListView):
@@ -223,8 +252,7 @@ class gen(generic.ListView):
         #html = template.render(context)  # Renders the template with the context data.
         html=get_template(template_src).render({
             "data": context_dict,
-            "dir": STATIC_DIRS,
-            "img": BASE_DIR+context_dict.person_image.url
+            "dir": STATIC_DIRS
         })
         pdfkit.from_string(html, 'out'+str(id)+'.pdf')
         #pdf = open("out"+id+".pdf")
@@ -236,7 +264,7 @@ class gen(generic.ListView):
 
     def myview(self):
         # Retrieve data or whatever you need
-        for pdfs in pdf.objects.all():
+        for pdfs in data.objects.all():
             self.render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id)
 
 

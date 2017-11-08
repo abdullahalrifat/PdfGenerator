@@ -1,4 +1,4 @@
-{% load staticfiles %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,38 +10,388 @@
                 margin: 1cm;
             }
         </style>
+    <style>
+        img {
+            border: 0;
+        }
 
-    <link rel="stylesheet" type="text/css" href="{% static '/Ted/bootstrap-3.3.7/dist/css/bootstrap.css'%}">
-    <link rel="stylesheet" type="text/css" href="{% static '/Ted/bootstrap-3.3.7/dist/css/bootstrap-theme.css'%}">
-    <link rel="stylesheet" href="{% static '/Ted/ted.css'%}">
+        img {
+            page-break-inside: avoid;
+        }
+        img {
+            max-width: 100% !important;
+        }
 
-    <script src="{% static '/Ted/jquery-2.2.4.js" type="text/javascript'%}"></script>
-    <script src="{% static '/Ted/bootstrap-3.3.7/dist/js/bootstrap.js" type="text/javascript'%}"></script>
+        img {
+            vertical-align: middle;
+        }
 
+        .img-responsive,
+        .thumbnail > img,
+        .thumbnail a > img,
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        .img-rounded {
+            border-radius: 6px;
+        }
+        .img-thumbnail {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            padding: 4px;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+        .img-circle {
+            border-radius: 50%;
+        }
+
+
+
+
+        .container-fluid:before,
+        .container-fluid:after{
+            display: table;
+            content: " ";
+        }
+
+        .container-fluid:after{
+            clear: both;
+        }
+
+        .container-fluid {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .img-rounded {
+            border-radius: 6px;
+        }
+
+        .center-block {
+            display: block;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-capitalize {
+            text-transform: capitalize;
+        }
+
+        .row:before,
+        .row:after{
+            display: table;
+            content: " ";
+        }
+
+        .row:after{
+            clear: both;
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+            float: left;
+        }
+
+        .col-md-8 {
+            width: 66.66666667%;
+        }
+
+        @media (min-width: 992px) {
+            .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+                float: left;
+            }
+            .col-md-12 {
+                width: 100%;
+            }
+            .col-md-11 {
+                width: 91.66666667%;
+            }
+            .col-md-10 {
+                width: 83.33333333%;
+            }
+            .col-md-9 {
+                width: 75%;
+            }
+            .col-md-8 {
+                width: 66.66666667%;
+            }
+            .col-md-7 {
+                width: 58.33333333%;
+            }
+            .col-md-6 {
+                width: 50%;
+            }
+            .col-md-5 {
+                width: 41.66666667%;
+            }
+            .col-md-4 {
+                width: 33.33333333%;
+            }
+            .col-md-3 {
+                width: 25%;
+            }
+            .col-md-2 {
+                width: 16.66666667%;
+            }
+            .col-md-1 {
+                width: 8.33333333%;
+            }
+            .col-md-pull-12 {
+                right: 100%;
+            }
+            .col-md-pull-11 {
+                right: 91.66666667%;
+            }
+            .col-md-pull-10 {
+                right: 83.33333333%;
+            }
+            .col-md-pull-9 {
+                right: 75%;
+            }
+            .col-md-pull-8 {
+                right: 66.66666667%;
+            }
+            .col-md-pull-7 {
+                right: 58.33333333%;
+            }
+            .col-md-pull-6 {
+                right: 50%;
+            }
+            .col-md-pull-5 {
+                right: 41.66666667%;
+            }
+            .col-md-pull-4 {
+                right: 33.33333333%;
+            }
+            .col-md-pull-3 {
+                right: 25%;
+            }
+            .col-md-pull-2 {
+                right: 16.66666667%;
+            }
+            .col-md-pull-1 {
+                right: 8.33333333%;
+            }
+            .col-md-pull-0 {
+                right: auto;
+            }
+            .col-md-push-12 {
+                left: 100%;
+            }
+            .col-md-push-11 {
+                left: 91.66666667%;
+            }
+            .col-md-push-10 {
+                left: 83.33333333%;
+            }
+            .col-md-push-9 {
+                left: 75%;
+            }
+            .col-md-push-8 {
+                left: 66.66666667%;
+            }
+            .col-md-push-7 {
+                left: 58.33333333%;
+            }
+            .col-md-push-6 {
+                left: 50%;
+            }
+            .col-md-push-5 {
+                left: 41.66666667%;
+            }
+            .col-md-push-4 {
+                left: 33.33333333%;
+            }
+            .col-md-push-3 {
+                left: 25%;
+            }
+            .col-md-push-2 {
+                left: 16.66666667%;
+            }
+            .col-md-push-1 {
+                left: 8.33333333%;
+            }
+            .col-md-push-0 {
+                left: auto;
+            }
+            .col-md-offset-12 {
+                margin-left: 100%;
+            }
+            .col-md-offset-11 {
+                margin-left: 91.66666667%;
+            }
+            .col-md-offset-10 {
+                margin-left: 83.33333333%;
+            }
+            .col-md-offset-9 {
+                margin-left: 75%;
+            }
+            .col-md-offset-8 {
+                margin-left: 66.66666667%;
+            }
+            .col-md-offset-7 {
+                margin-left: 58.33333333%;
+            }
+            .col-md-offset-6 {
+                margin-left: 50%;
+            }
+            .col-md-offset-5 {
+                margin-left: 41.66666667%;
+            }
+            .col-md-offset-4 {
+                margin-left: 33.33333333%;
+            }
+            .col-md-offset-3 {
+                margin-left: 25%;
+            }
+            .col-md-offset-2 {
+                margin-left: 16.66666667%;
+            }
+            .col-md-offset-1 {
+                margin-left: 8.33333333%;
+            }
+            .col-md-offset-0 {
+                margin-left: 0;
+            }
+        }
+
+        .img-thumbnail {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            padding: 4px;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
+        }
+
+
+
+
+        /******      body      ******/
+        .mainBody{
+            position: relative;
+            width: 800px;
+            height: 500px;
+            border: 2px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .red-section{
+            height: 200px;
+            background-color: #ff1000;
+        }
+
+        .mainBody .red-section .img-size{
+            position: relative;
+            width: 176px;
+            height: 208px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            border-radius: 0;
+            z-index: 5;
+        }
+
+        .name{
+            position: relative;
+            background-color: #d9dfdf;
+            color: black;
+            font-size: 27px;
+            height: 40px;
+            z-index: 0;
+            margin-top: 70px;
+        }
+
+        .bot{
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 8px;
+        }
+
+        .text-bold{
+            font-weight: bold;
+        }
+
+        .group{
+            position: relative;
+            margin-left: 5px;
+        }
+
+        .group p{
+            margin-bottom: 0;
+            font-weight: 600;
+
+        }
+
+        .qrcode{
+            width: 100px;
+            height: 100px;
+            float: right;
+        }
+
+    </style>
+
+    <!--<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="ted.css">-->
 </head>
 <body>
 <div class="container-fluid">
     <div class="mainBody ">
         <div class="container-fluid red-section">
-            <img src="{{ img }}" class="img-rounded center-block img-size">
         </div>
 
-        <div class="container-fluid text-center text-capitalize name"> {{ data.name }}</div>
+        <div class="container-fluid text-center text-capitalize name">{{ data.name }}</div>
 
         <div class="container-fluid bot">
             <div class="row">
                 <div class="col-md-8">
                     <h4 class="text-bold">Talk to me about</h4>
                     <div class="group">
-                        {{ data.talk }}
+                        {{ data.interest1}}
+                    </div>
+                    <div class="group">
+                        {{ data.interest2}}
+                    </div>
+                    <div class="group">
+                        {{ data.interest3}}
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
-

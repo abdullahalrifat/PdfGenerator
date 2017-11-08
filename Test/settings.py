@@ -127,6 +127,7 @@ STATIC_DIRS=(os.path.join(BASE_DIR,  'static'),)
 
 MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
+PDF_DIRS = (os.path.join(BASE_DIR,  'pdf'),)
 
 
 FILE_UPLOAD_HANDLERS = ("django_excel.ExcelMemoryFileUploadHandler",
