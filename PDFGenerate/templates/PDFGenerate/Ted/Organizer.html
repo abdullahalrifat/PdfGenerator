@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <link href="https://www.fontify.me/wf/62195c4f85f04ffb98ddc7dc5d36d227" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
+    <style>
+        .bodywrapper{
+            width: 905px;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: aqua;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .body{
+            position: absolute;
+            width: 905px;
+            height: auto;
+            margin-right: auto;
+            margin-left: auto;
+            background-image: url("{{ img1 }}");
+        }
+
+        .talkme{
+            position: relative;
+            width: 430px;
+            height: auto;
+            margin-top: 40px;
+            margin-bottom: 0;
+            padding-left: 20px;
+            border-radius: 0 7px 7px 0;
+            background: linear-gradient(to left, #000c42, #663498);
+        }
+
+        .talkme p{
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin: auto;
+            color: white;
+            font-size: 35px;
+            font-style: normal;
+            font-family: font151474;
+        }
+
+        .body .owner{
+            position: relative;
+            float: right;
+            width: 174px;
+            margin-top: -50px;
+            border-radius: 7px 0 0 7px;
+            background-color: white;
+        }
+
+        .body .owner p{
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin: auto;
+            color: black;
+            font-size: 33px;
+            font-style: normal;
+            font-family: font151474;
+            text-align: center;
+        }
+
+        .body .innovation{
+            clear: both;
+            float: none;
+            position: relative;
+            height: auto;
+            margin-top: -20px;
+            width: 640px;
+            background-color: white;
+            border-radius: 0 5px 5px 0;
+            padding-left: 20px;
+        }
+
+        .innovation p{
+            position: relative;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            color: black;
+            font-size: 28px;
+            font-style: normal;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .namecontainer{
+            position: relative;
+            width: auto;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .namecontainer .name{
+            position: relative;
+            color: white;
+            font-size: 90px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bolder;
+            text-shadow: 8px 8px 15px #020202;
+        }
+
+        .desig {
+            position: relative;
+            color: white;
+            font-size: 40px;
+            margin-right: auto;
+            margin-left: auto;
+            margin-top: -20px;
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bolder;
+            text-shadow: 8px 8px 15px #0e0e0e;
+        }
+
+        .sponsors{
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: 60px;
+            background-color: white;
+        }
+
+        .sponsors .left{
+            position: relative;
+            width: 50%;
+            float: left;
+            background-color: white;
+        }
+
+        .sponsors .right{
+            position: relative;
+            width: 50%;
+            float: right;
+            background-color: white;
+        }
+
+        .sponsors .left img{
+            clear: both;
+            float: none;
+            position: relative;
+            margin-left: 40px;
+            margin-bottom: 10px;
+        }
+
+        .sponsors .right img{
+            clear: both;
+            float: none;
+            position: relative;
+            margin-left: 60px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+
+<body>
+<div class="bodywrapper">
+    <div class="body">
+        <div class="talkme">
+            <p>Feel free to talk to me about:</p>
+        </div>
+
+        <div class="owner">
+            <p>Organizer</p>
+        </div>
+
+        <div class="innovation">
+            <p> {{ data.interest1}}|  {{ data.interest2}} |  {{ data.interest3}}</p>
+        </div>
+
+        <div class="namecontainer">
+            <div class="name"> {{ data.name}}</div>
+        </div>
+
+        <div class="desig">{{ data.designation}}, {{ data.company}}</div>
+
+        <div class="sponsors">
+            <div class="left">
+                <img src="{{ img2 }}">
+            </div>
+
+            <div class="right">
+                <img src="{{ img3 }}">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

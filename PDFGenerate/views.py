@@ -8,7 +8,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from Test.settings import BASE_DIR
 from Test.settings import STATIC_DIRS
-from Test.settings import PDF_DIRS
+from Test.settings import PDF_DIRS,MEDIA_URL,MEDIA_ROOT
 from .models import pdf
 from django.template.loader import get_template
 from django.template import Context
@@ -186,8 +186,7 @@ def ver(request):
             filehandle = request.FILES['ex']
             wb = load_workbook(filehandle)
             sheet = wb.get_sheet_by_name('Sheet1')
-            print(type_list)
-            print(sheet.title)
+            print (BASE_DIR)
             for row in sheet.iter_rows('B{}:J{}'.format(sheet.min_row+1, sheet.max_row)):
                 d=[]
                 for cell in row:
@@ -213,33 +212,50 @@ def ver(request):
 
 
 def generatePdf(typ):
-    def render_to_pdf(template_src, context_dict, id, location):
+    options = {
+        'page-size': 'Letter',
+        'margin-top': '0.75in',
+        'margin-right': '0.75in',
+        'margin-bottom': '0.75in',
+        'margin-left': '0.75in',
+        'encoding': "UTF-8"
+    }
+    img2 = BASE_DIR + "/PDFGenerate/static/Ted/rendering.png"
+    img3 = BASE_DIR + "/PDFGenerate/static/Ted/tedx.png"
+    def render_to_pdf(template_src, context_dict, id, location,img1):
         html = get_template(template_src).render({
             "data": context_dict,
-            "dir": STATIC_DIRS
+            "img1":img1,
+            "img2":img2,
+            "img3":img3
+
         })
+
         dirs=''.join(PDF_DIRS)
 
-        pdfkit.from_string(html, dirs+location+'out' + str(id) + '.pdf')
+        pdfkit.from_string(html, dirs+location+'out' + str(id) + '.pdf', options=options)
 
 
     if(typ=="Atendee"):
         location="/Atendee/"
+        img1=BASE_DIR+"/PDFGenerate/static/Ted/attendee.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
+            render_to_pdf('PDFGenerate/Ted/Attendee.html', pdfs, pdfs.id,location,img1)
     elif(typ=="Crew"):
         location = "/Crew/"
+        img1 = BASE_DIR + "/PDFGenerate/static/Ted/crew.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
+            render_to_pdf('PDFGenerate/Ted/Crew.html', pdfs, pdfs.id,location,img1)
     elif(typ=="Organizer"):
         location = "/Organizer/"
-
+        img1 = BASE_DIR + "/PDFGenerate/static/Ted/organizer.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
+            render_to_pdf('PDFGenerate/Ted/Organizer.html', pdfs, pdfs.id,location,img1)
     elif (typ == "Speaker"):
         location = "/Speaker/"
+        img1 = BASE_DIR + "/PDFGenerate/static/Ted/speaker.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/temp.html', pdfs, pdfs.id,location)
+            render_to_pdf('PDFGenerate/Ted/Speaker.html', pdfs, pdfs.id,location,img1)
 
 
 class gen(generic.ListView):

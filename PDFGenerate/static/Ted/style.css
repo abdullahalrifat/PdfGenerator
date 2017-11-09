@@ -1,0 +1,34 @@
+.bodywrapper{
+    width: 905px;
+    height: 517px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aqua;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.body{
+    position: absolute;
+    width: 905px;
+    height: 517px;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url("organizer.png");
+}
+
+.talkme{
+    width: 500px;
+    height: 50px;
+    background-color: brown;
+    margin-top: 40px;
+}
+
+.talkme p{
+    position: relative;
+    padding: 3px;
+    color: white;
+    font-size: 35px;
+    font-style: normal;
+    font-family: font151474;
+}
