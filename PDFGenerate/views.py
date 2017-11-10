@@ -213,21 +213,18 @@ def ver(request):
 
 def generatePdf(typ):
     options = {
-        'page-size': 'Letter',
-        'margin-top': '0.75in',
-        'margin-right': '0.75in',
-        'margin-bottom': '0.75in',
-        'margin-left': '0.75in',
+        'page-height':'5in',
+        'page-width':'3.5in',
+        'orientation': 'landscape',
+        'dpi': 400,
         'encoding': "UTF-8"
     }
-    img2 = BASE_DIR + "/PDFGenerate/static/Ted/rendering.png"
-    img3 = BASE_DIR + "/PDFGenerate/static/Ted/tedx.png"
+    img2 = BASE_DIR + "/PDFGenerate/static/Ted/mini.jpg"
     def render_to_pdf(template_src, context_dict, id, location,img1):
         html = get_template(template_src).render({
             "data": context_dict,
             "img1":img1,
             "img2":img2,
-            "img3":img3
 
         })
 

@@ -1,0 +1,83 @@
+.mainBody{
+    position: relative;
+    width: 800px;
+    height: 500px;
+    border: 2px solid black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.red-section{
+    height: 200px;
+    background-color: #ff1000;
+}
+
+.mainBody .red-section .img-size{
+    position: relative;
+    width: 176px;
+    height: 208px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    border-radius: 0;
+    z-index: 5;
+}
+
+.name{
+    position: relative;
+    background-color: #d9dfdf;
+    color: black;
+    font-size: 27px;
+    height: 40px;
+    z-index: 0;
+    margin-top: 70px;
+}
+
+.bot{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+.group{
+    position: relative;
+    margin-left: 5px;
+}
+
+.group p{
+    margin-bottom: 0;
+    font-weight: 600;
+
+}
+
+.qrcode{
+    width: 100px;
+    height: 100px;
+    float: right;
+}
+
+.mail_body{
+    position: relative;
+    width: 700px;
+    height: 200px;
+    background-color: white;
+    margin-top: 150px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.27);
+    -moz-box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.27);
+    box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.27);
+}
+
+.inner_body{
+    clear: both;
+    float: none;
+    position: relative;
+    margin-top: 20px;
+    margin-right: 30px;
+    margin-left: 30px;
+}

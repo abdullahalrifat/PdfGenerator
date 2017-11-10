@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
     <style>
         .bodywrapper{
-            width: 905px;
+            width: 504px;
             height: auto;
             margin-left: auto;
             margin-right: auto;
@@ -20,18 +20,19 @@
 
         .body{
             position: absolute;
-            width: 905px;
+            width: 504px;
             height: auto;
             margin-right: auto;
             margin-left: auto;
+            background-size: cover;
             background-image: url("{{ img1 }}");
         }
 
         .talkme{
             position: relative;
-            width: 430px;
+            width: 240px;
             height: auto;
-            margin-top: 40px;
+            margin-top: 20px;
             margin-bottom: 0;
             padding-left: 20px;
             border-radius: 0 7px 7px 0;
@@ -43,7 +44,7 @@
             padding-bottom: 7px;
             margin: auto;
             color: white;
-            font-size: 35px;
+            font-size: 20px;
             font-style: normal;
             font-family: font151474;
         }
@@ -51,8 +52,8 @@
         .body .owner{
             position: relative;
             float: right;
-            width: 174px;
-            margin-top: -50px;
+            width: 120px;
+            margin-top: -35px;
             border-radius: 7px 0 0 7px;
             background-color: white;
         }
@@ -62,7 +63,7 @@
             padding-bottom: 7px;
             margin: auto;
             color: black;
-            font-size: 33px;
+            font-size: 18px;
             font-style: normal;
             font-family: font151474;
             text-align: center;
@@ -73,8 +74,8 @@
             float: none;
             position: relative;
             height: auto;
-            margin-top: -20px;
-            width: 640px;
+            margin-top: -8px;
+            width: 300px;
             background-color: white;
             border-radius: 0 5px 5px 0;
             padding-left: 20px;
@@ -85,7 +86,7 @@
             padding-top: 6px;
             padding-bottom: 6px;
             color: black;
-            font-size: 28px;
+            font-size: 13px;
             font-style: normal;
             font-family: 'Open Sans', sans-serif;
         }
@@ -101,7 +102,7 @@
         .namecontainer .name{
             position: relative;
             color: white;
-            font-size: 90px;
+            font-size: 50px;
             margin-right: auto;
             margin-left: auto;
             text-align: center;
@@ -113,10 +114,10 @@
         .desig {
             position: relative;
             color: white;
-            font-size: 40px;
+            font-size: 20px;
             margin-right: auto;
             margin-left: auto;
-            margin-top: -20px;
+            margin-top: -10px;
             text-align: center;
             font-family: 'Open Sans', sans-serif;
             font-weight: bolder;
@@ -131,34 +132,9 @@
             background-color: white;
         }
 
-        .sponsors .left{
+        .sponsors img{
             position: relative;
-            width: 50%;
-            float: left;
-            background-color: white;
-        }
-
-        .sponsors .right{
-            position: relative;
-            width: 50%;
-            float: right;
-            background-color: white;
-        }
-
-        .sponsors .left img{
-            clear: both;
-            float: none;
-            position: relative;
-            margin-left: 40px;
-            margin-bottom: 10px;
-        }
-
-        .sponsors .right img{
-            clear: both;
-            float: none;
-            position: relative;
-            margin-left: 60px;
-            margin-bottom: 10px;
+            width: 504px;
         }
     </style>
 </head>
@@ -176,23 +152,17 @@
         </div>
 
         <div class="innovation">
-            <p> {{ data.interest1}}|  {{ data.interest2}} |  {{ data.interest3}}</p>
+            <p>{{ data.interest1}}|  {{ data.interest2}} |  {{ data.interest3}}</p>
         </div>
 
         <div class="namecontainer">
-            <div class="name"> {{ data.name}}</div>
+            <div class="name">{{ data.name}}</div>
         </div>
 
         <div class="desig">{{ data.designation}}, {{ data.company}}</div>
 
         <div class="sponsors">
-            <div class="left">
-                <img src="{{ img2 }}">
-            </div>
-
-            <div class="right">
-                <img src="{{ img3 }}">
-            </div>
+            <img src="{{ img2 }}">
         </div>
     </div>
 </div>
