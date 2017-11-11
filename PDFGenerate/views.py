@@ -187,13 +187,13 @@ def ver(request):
             wb = load_workbook(filehandle)
             sheet = wb.get_sheet_by_name('Sheet1')
             print (BASE_DIR)
-            for row in sheet.iter_rows('B{}:J{}'.format(sheet.min_row+1, sheet.max_row)):
+            for row in sheet.iter_rows('A{}:G{}'.format(sheet.min_row+1, sheet.max_row)):
                 d=[]
                 for cell in row:
                     d.append(cell.value)
 
                     #print(cell.value)
-                datas = data(name=d[0],designation=d[1],company=d[2],contactno=d[3],email=d[4],address=d[5],interest1=d[6],interest2=d[7],interest3=d[8])
+                datas = data(FullName=d[0],Company=d[1],Position=d[2],Interest1=d[3],Interest2=d[4],Interest3=d[5],Number=d[6])
                 datas.save()
                 #print(d["name"])
             generatePdf(type)
@@ -213,18 +213,33 @@ def ver(request):
 
 def generatePdf(typ):
     options = {
-        'page-height':'5in',
-        'page-width':'3.5in',
-        'orientation': 'landscape',
+        'page-height':'4.3in', #actual width
+        'page-width':'2.9in', #actual height
+        'orientation': 'landscape', #because of landscape mode height and width swaps
         'dpi': 400,
+        'margin-top': '0in',
+        'margin-right': '0in',
+        'margin-bottom': '0in',
+        'margin-left': '0in',
         'encoding': "UTF-8"
     }
     img2 = BASE_DIR + "/PDFGenerate/static/Ted/mini.jpg"
+    jqr1 = BASE_DIR + "/PDFGenerate/static/TextResize/jquery-3.2.1.min.js"
     def render_to_pdf(template_src, context_dict, id, location,img1):
+        str1=context_dict.FullName
+        size1=len(str1)
+        str2=context_dict.Position + context_dict.Company
+        size2=len(str2)
+        str3=context_dict.Interest1+context_dict.Interest2+context_dict.Interest3
+        size3=len(str3)
         html = get_template(template_src).render({
             "data": context_dict,
             "img1":img1,
             "img2":img2,
+            "jqr1":jqr1,
+            "size1": size1,
+            "size2": size2,
+            "size3": size3,
 
         })
 
