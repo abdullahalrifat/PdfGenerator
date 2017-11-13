@@ -34,14 +34,15 @@
             height: auto;
             margin-top: 20px;
             margin-bottom: 0;
+            margin-left: 1px;
             padding-left: 20px;
             border-radius: 0 7px 7px 0;
             background: linear-gradient(to left, #000c42, #663498);
         }
 
         .talkme p{
-            padding-top: 7px;
-            padding-bottom: 7px;
+            padding-top: 0px;
+            padding-bottom: 0px;
             margin: auto;
             color: white;
             font-size: 20px;
@@ -49,24 +50,24 @@
             font-family: font151474;
         }
 
-        .body .owner{
+       .body .owner{
             position: relative;
             float: right;
             width: 140px;
-            margin-top: -35px;
+            margin-top: -25px;
             border-radius: 7px 0 0 7px;
             background-color: white;
-            font-weight: bolder;
+            font-weight: lighter;
         }
 
         .body .owner p{
-            padding-top: 7px;
-            padding-bottom: 7px;
+            padding-top: 4px;
+            padding-bottom: 4px;
             margin: auto;
             color: black;
-            font-size: 18px;
+            font-size: 14px;
             font-style: normal;
-            font-family: font151474;
+            font-family: sans-serif;
             text-align: center;
         }
 
@@ -77,6 +78,7 @@
             height: auto;
             margin-top: -8px;
             width: 300px;
+            margin-top:5px;
             background-color: white;
             border-radius: 0 5px 5px 0;
             padding-left: 20px;
@@ -98,6 +100,7 @@
             height: auto;
             margin-left: auto;
             margin-right: auto;
+            margin-top:10px;
         }
 
         .namecontainer .name{
@@ -189,7 +192,7 @@
         </div>
 
         <div class="owner">
-            <p>Crew {{ data.Number }}</p>
+            <p>Crew : {{ data.Number }}</p>
         </div>
         <div class="innovation">
              <div class="innov">

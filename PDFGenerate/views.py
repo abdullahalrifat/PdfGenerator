@@ -193,7 +193,27 @@ def ver(request):
                     d.append(cell.value)
 
                     #print(cell.value)
-                datas = data(FullName=d[0],Company=d[1],Position=d[2],Interest1=d[3],Interest2=d[4],Interest3=d[5],Number=d[6])
+                if d[2]==None:
+                    company=""
+                else:
+                    company=d[2]
+                if d[3] == None:
+                    position = ""
+                else:
+                    position = d[3]
+                if d[4] == None:
+                    interest1 = ""
+                else:
+                    interest1 = d[4]
+                if d[5] == None:
+                    interest2 = ""
+                else:
+                    interest2 = d[5]
+                if d[6] == None:
+                    interest3 = ""
+                else:
+                    interest3 = d[6]
+                datas = data(Number=d[0],FullName=d[1],Company=company,Position=position,Interest1=interest1,Interest2=interest2,Interest3=interest3)
                 datas.save()
                 #print(d["name"])
             generatePdf(type)
@@ -213,25 +233,39 @@ def ver(request):
 
 def generatePdf(typ):
     options = {
-        'page-height':'4.3in', #actual width
-        'page-width':'2.9in', #actual height
+        'page-height':'4.27in', #actual width
+        'page-width':'2.51in', #actual height
         'orientation': 'landscape', #because of landscape mode height and width swaps
         'dpi': 400,
-        'margin-top': '0in',
-        'margin-right': '0in',
-        'margin-bottom': '0in',
-        'margin-left': '0in',
+        'margin-top': '0mm',
+        'margin-right': '0mm',
+        'margin-bottom': '0mm',
+        'margin-left': '0mm',
         'encoding': "UTF-8"
     }
     img2 = BASE_DIR + "/PDFGenerate/static/Ted/mini.jpg"
     jqr1 = BASE_DIR + "/PDFGenerate/static/TextResize/jquery-3.2.1.min.js"
-    def render_to_pdf(template_src, context_dict, id, location,img1):
+    def render_to_pdf(template_src, context_dict,location,img1):
         str1=context_dict.FullName
         size1=len(str1)
         str2=context_dict.Position + context_dict.Company
         size2=len(str2)
         str3=context_dict.Interest1+context_dict.Interest2+context_dict.Interest3
         size3=len(str3)
+
+        if(context_dict.Position=="" and context_dict.Company==""):
+            finalStrPos=""
+        elif(context_dict.Position=="" and context_dict.Company!=""):
+            finalStrPos=context_dict.Company
+        elif(context_dict.Position!="" and context_dict.Company==""):
+            finalStrPos=context_dict.Position
+        else:
+            finalStrPos=context_dict.Company+" , "+context_dict.Position
+        if(context_dict.Interest1=="" and context_dict.Interest2=="" and context_dict.Interest3==""):
+            finalStrInt=""
+        else :
+            finalStrInt=context_dict.Interest1+" | "+context_dict.Interest2+" | "+context_dict.Interest3
+
         html = get_template(template_src).render({
             "data": context_dict,
             "img1":img1,
@@ -240,34 +274,36 @@ def generatePdf(typ):
             "size1": size1,
             "size2": size2,
             "size3": size3,
+            "position":finalStrPos,
+            "interest":finalStrInt,
 
         })
 
         dirs=''.join(PDF_DIRS)
 
-        pdfkit.from_string(html, dirs+location+'out' + str(id) + '.pdf', options=options)
+        pdfkit.from_string(html, dirs+location+context_dict.Number + '.pdf', options=options)
 
 
     if(typ=="Atendee"):
         location="/Atendee/"
         img1=BASE_DIR+"/PDFGenerate/static/Ted/attendee.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/Ted/Attendee.html', pdfs, pdfs.id,location,img1)
+            render_to_pdf('PDFGenerate/Ted/Attendee.html', pdfs,location,img1)
     elif(typ=="Crew"):
         location = "/Crew/"
         img1 = BASE_DIR + "/PDFGenerate/static/Ted/crew.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/Ted/Crew.html', pdfs, pdfs.id,location,img1)
+            render_to_pdf('PDFGenerate/Ted/Crew.html', pdfs,location,img1)
     elif(typ=="Organizer"):
         location = "/Organizer/"
         img1 = BASE_DIR + "/PDFGenerate/static/Ted/organizer.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/Ted/Organizer.html', pdfs, pdfs.id,location,img1)
+            render_to_pdf('PDFGenerate/Ted/Organizer.html', pdfs, location,img1)
     elif (typ == "Speaker"):
         location = "/Speaker/"
         img1 = BASE_DIR + "/PDFGenerate/static/Ted/speaker.png"
         for pdfs in data.objects.all():
-            render_to_pdf('PDFGenerate/Ted/Speaker.html', pdfs, pdfs.id,location,img1)
+            render_to_pdf('PDFGenerate/Ted/Speaker.html', pdfs, location,img1)
 
 
 class gen(generic.ListView):
