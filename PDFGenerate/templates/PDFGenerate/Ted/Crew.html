@@ -8,12 +8,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
   <style>
-        .bodywrapper{
+
+       .bodywrapper{
             width: 504px;
-            height: auto;
+            height: 213px;
             margin-left: auto;
             margin-right: auto;
-            background-color: aqua;
+            background-color: transparent;
             margin-top: 0;
             margin-bottom: 0;
         }
@@ -21,40 +22,39 @@
         .body{
             position: absolute;
             width: 504px;
-            height: auto;
+            height: 213px;
             margin-right: auto;
             margin-left: auto;
-            background-size: cover;
             background-image: url("{{ img1 }}");
+            background-size: cover;
         }
 
         .talkme{
             position: relative;
             width: 240px;
-            height: auto;
-            margin-top: 20px;
-            margin-bottom: 0;
-            margin-left: 1px;
+            height: 28px ;
+            margin-top: 15px;
+            margin-bottom: 8px;
             padding-left: 20px;
             border-radius: 0 7px 7px 0;
             background: linear-gradient(to left, #000c42, #663498);
         }
 
         .talkme p{
-            padding-top: 0px;
-            padding-bottom: 0px;
-            margin: auto;
+            margin-top: 7px;
+            margin-bottom: 7px;
             color: white;
             font-size: 20px;
             font-style: normal;
             font-family: font151474;
         }
 
-       .body .owner{
+        .body .owner{
             position: relative;
             float: right;
             width: 140px;
-            margin-top: -25px;
+            height: 28px;
+            margin-top: -35px;
             border-radius: 7px 0 0 7px;
             background-color: white;
             font-weight: lighter;
@@ -65,20 +65,19 @@
             padding-bottom: 4px;
             margin: auto;
             color: black;
-            font-size: 14px;
+            font-size: 15px;
             font-style: normal;
-            font-family: sans-serif;
+            font-family: 'Open Sans', sans-serif;
             text-align: center;
         }
 
-        .innovation{
+        .body .innovation{
             clear: both;
             float: none;
             position: relative;
-            height: auto;
-            margin-top: -8px;
+            height: 28px;
+            margin-top: 5px;
             width: 300px;
-            margin-top:5px;
             background-color: white;
             border-radius: 0 5px 5px 0;
             padding-left: 20px;
@@ -86,8 +85,7 @@
 
         .innovation .innov{
             position: relative;
-            padding-top: 6px;
-            padding-bottom: 6px;
+            padding-top: 5px;
             color: black;
             font-size: 13px;
             font-style: normal;
@@ -98,16 +96,17 @@
             position: relative;
             width: auto;
             height: auto;
+            margin-top: 10px;
             margin-left: auto;
             margin-right: auto;
-            margin-top:10px;
         }
 
         .namecontainer .name{
             position: relative;
+            height: 50px;
             color: white;
             font-size: 50px;
-            padding: 0;
+            padding-top: 10px;
             margin-right: auto;
             margin-left: auto;
             text-align: center;
@@ -120,8 +119,7 @@
             position: relative;
             color: white;
             font-size: 20px;
-            width: auto;
-            height: 30px;
+            height: 20px;
             margin-right: auto;
             margin-left: auto;
             margin-top: 5px;
@@ -131,55 +129,69 @@
             text-shadow: 8px 8px 15px #0e0e0e;
         }
 
-        .smfont{
+
+        .sponsors{
+            position: relative;
+            width: 100%;
+            height: 75px;
+            margin-top: 42px;
+            background-color: white;
+        }
+
+        .sponsors img{
+            position: absolute;
+            width: 504px;
+        }
+
+        .smfont0{
             font-size: 40px !important;
         }
-
-        .smdesig{
-            font-size: 18px !important;
-        }
-        .sminnov{
-            font-size: 13px !important;
-        }
-
-        .smfont2{
+        .smfont{
             font-size: 35px !important;
         }
-
-        .smdesig2{
-            font-size: 16px !important;
-        }
-        .sminnov2{
-            font-size: 12px !important;
+        .smfont2{
+            font-size: 30px !important;
         }
         .smfont3{
             font-size: 25px !important;
         }
-
+        .smfont4{
+            font-size: 20px !important;
+        }
+        .smfont5{
+            font-size: 17px !important;
+        }
+        .smfont6{
+            font-size: 15px !important;
+        }
+        .smdesig{
+            font-size: 20px !important;
+        }
+        .smdesig2{
+            font-size: 17px !important;
+        }
         .smdesig3{
-            font-size: 14px !important;
+            font-size: 15px !important;
+        }
+        .sminnov{
+            font-size: 13px !important;
+        }
+        .sminnov2{
+            font-size: 12px !important;
         }
         .sminnov3{
             font-size: 11px !important;
         }
         .sminnov4{
-            font-size: 9px !important;
+            font-size: 10px !important;
         }
         .sminnov5{
+            font-size: 9px !important;
+        }
+        .sminnov6{
             font-size: 8px !important;
         }
-        .sponsors{
-            position: relative;
-            width: 100%;
-            height: auto;
-            margin-top: 60px;
-            background-color: white;
-        }
 
-        .sponsors img{
-            position: relative;
-            width: 504px;
-        }
     </style>
 </head>
 
@@ -196,7 +208,7 @@
         </div>
         <div class="innovation">
              <div class="innov">
-            {{ data.Interest1}}|  {{ data.Interest2}} |  {{ data.Interest3}}
+            {{ interest }}
              </div>
         </div>
 
@@ -204,9 +216,9 @@
             <div class="name">{{ data.FullName}}</div>
         </div>
 
-        <div class="desig">{{ data.Position}}, {{ data.Company}}</div>
-        <div class="sponsors">
-            <img src="{{ img2 }}">
+        <div class="desig">{{ position}}</div>
+         <div class="sponsors">
+                <img src="{{ img2 }}">
         </div>
     </div>
     <script>
@@ -214,25 +226,38 @@
         var len1={{ size1 }};
         var len2={{ size2 }};
         var len3={{ size3 }};
-        if(len1>20)
+
+        if(len1>=40)
+            $(".name").toggleClass("smfont6");
+        else if(len1>=35)
+            $(".name").toggleClass("smfont5");
+        else if(len1>=30)
+            $(".name").toggleClass("smfont4");
+        else if(len1>=25)
             $(".name").toggleClass("smfont3");
-        else if (len1>15)
+        else if(len1>=20)
             $(".name").toggleClass("smfont2");
-        else
+        else if (len1>=15)
             $(".name").toggleClass("smfont");
-        if(len2>40)
+        else
+            $(".name").toggleClass("smfont0");
+
+        if(len2>=30)
             $(".desig").toggleClass("smdesig3");
-        else if (len2>30)
+        else if (len2>=20)
             $(".desig").toggleClass("smdesig2");
         else
             $(".desig").toggleClass("smdesig");
-        if(len3>40)
+        if(len3>=45)
+             $(".innov").toggleClass("sminnov6");
+
+       else if(len3>=40)
             $(".innov").toggleClass("sminnov5");
-        if(len3>30)
+        else if (len3>=30)
             $(".innov").toggleClass("sminnov4");
-        else if(len3>20)
+        else if(len3>=20)
             $(".innov").toggleClass("sminnov3");
-        else if (len3>15)
+        else if (len3>=15)
             $(".innov").toggleClass("sminnov2");
         else
             $(".innov").toggleClass("sminnov");

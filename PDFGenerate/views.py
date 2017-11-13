@@ -305,6 +305,11 @@ def generatePdf(typ):
         for pdfs in data.objects.all():
             render_to_pdf('PDFGenerate/Ted/Speaker.html', pdfs, location,img1)
 
+    elif (typ == "Volunteer"):
+        location = "/Volunteer/"
+        img1 = BASE_DIR + "/PDFGenerate/static/Ted/organizer.png"
+        for pdfs in data.objects.all():
+            render_to_pdf('PDFGenerate/Ted/Volunteer.html', pdfs, location,img1)
 
 class gen(generic.ListView):
     template_name = 'PDFGenerate/done.html'
