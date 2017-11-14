@@ -261,8 +261,14 @@ def generatePdf(typ):
             finalStrPos=context_dict.Position
         else:
             finalStrPos=context_dict.Company+" , "+context_dict.Position
+
         if(context_dict.Interest1=="" and context_dict.Interest2=="" and context_dict.Interest3==""):
             finalStrInt=""
+        elif (context_dict.Interest1!="" and context_dict.Interest2=="" and context_dict.Interest3==""):
+            finalStrInt = context_dict.Interest1
+
+        elif (context_dict.Interest1 != "" and context_dict.Interest2 != "" and context_dict.Interest3 == ""):
+            finalStrInt = context_dict.Interest1 + " | " + context_dict.Interest2
         else :
             finalStrInt=context_dict.Interest1+" | "+context_dict.Interest2+" | "+context_dict.Interest3
 
